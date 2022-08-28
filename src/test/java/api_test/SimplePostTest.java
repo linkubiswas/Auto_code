@@ -6,18 +6,14 @@ import io.restassured.http.Method;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONObject;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class SimplePostTest {
-    private static final Logger LOGGER = LogManager.getLogger(SimplePostTest.class);
+public class SimplePostTest extends BaseAPIClass {
 
     @Test
     public void createNewUser(){
-        LOGGER.info("--------API Test: Create New User--------");
         RestAssured.baseURI = "https://reqres.in/api/users";
 
         RequestSpecification httpRequest = RestAssured.given();
@@ -44,8 +40,5 @@ public class SimplePostTest {
         JsonPath jsonPath = response.jsonPath();
         String actualName = jsonPath.getString("name");
         Assert.assertEquals(actualName, fullName);
-
-
-        LOGGER.info("--------End Test: Create New User--------");
     }
 }

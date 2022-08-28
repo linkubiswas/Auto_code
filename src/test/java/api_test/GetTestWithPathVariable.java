@@ -5,17 +5,13 @@ import io.restassured.http.Method;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class GetTestWithPathVariable {
-    private static final Logger LOGGER = LogManager.getLogger(GetTestWithPathVariable.class);
+public class GetTestWithPathVariable extends BaseAPIClass{
 
     @Test
     public void getSingleUser(){
-        LOGGER.info("--------API Test: Get Signal User---------");
         RestAssured.baseURI = "https://reqres.in/api/users";
 
         RequestSpecification httpRequest = RestAssured.given();
@@ -31,13 +27,10 @@ public class GetTestWithPathVariable {
         String expectedEmail = "janet.weaver@reqres.in";
         Assert.assertEquals(expectedEmail, actualEmailId);
 
-
-        LOGGER.info("--------End Test: Get Signal User---------");
     }
 
     @Test
     public void attemptToGetUserWithInvalidId(){
-        LOGGER.info("--------API Test: Attempt to retrieve User With Invalid Id---------");
         RestAssured.baseURI = "https://reqres.in/api/users";
 
         RequestSpecification httpRequest = RestAssured.given();
@@ -52,9 +45,6 @@ public class GetTestWithPathVariable {
 
         String expectedBodyContent= "{}";
         Assert.assertEquals(expectedBodyContent, actualBodyContent);
-
-
-        LOGGER.info("--------End Test: Get Signal User---------");
 
     }
 
